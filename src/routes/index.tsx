@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell, SectionTitle } from "@/components/AppShell";
-import { StatusBadge } from "@/components/StatusBadge";
 import { dashboardStats, matches } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/")({
@@ -135,13 +134,6 @@ function Dashboard() {
         </div>
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-2">
-        <StatusBadge status="NEW" />
-        <StatusBadge status="ACTIVE" />
-        <StatusBadge status="WAITING_REPLY" />
-        <StatusBadge status="POSSIBLE_DATE" />
-        <StatusBadge status="DATE_SCHEDULED" />
-      </div>
     </AppShell>
   );
 }

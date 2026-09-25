@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
 import { Route as ConversasRouteImport } from './routes/conversas'
 import { Route as DatesRouteImport } from './routes/dates'
+import { Route as IaRouteImport } from './routes/ia'
 import { Route as MatchesRouteImport } from './routes/matches'
 
 const IndexRoute = IndexRouteImport.update({
@@ -25,6 +27,11 @@ const AgendaRoute = AgendaRouteImport.update({
   path: '/agenda',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConversasRoute = ConversasRouteImport.update({
   id: '/conversas',
   path: '/conversas',
@@ -33,6 +40,11 @@ const ConversasRoute = ConversasRouteImport.update({
 const DatesRoute = DatesRouteImport.update({
   id: '/dates',
   path: '/dates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IaRoute = IaRouteImport.update({
+  id: '/ia',
+  path: '/ia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MatchesRoute = MatchesRouteImport.update({
@@ -44,38 +56,68 @@ const MatchesRoute = MatchesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/conversas': typeof ConversasRoute
   '/dates': typeof DatesRoute
+  '/ia': typeof IaRoute
   '/matches': typeof MatchesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/conversas': typeof ConversasRoute
   '/dates': typeof DatesRoute
+  '/ia': typeof IaRoute
   '/matches': typeof MatchesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/agenda': typeof AgendaRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/conversas': typeof ConversasRoute
   '/dates': typeof DatesRoute
+  '/ia': typeof IaRoute
   '/matches': typeof MatchesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/agenda' | '/conversas' | '/dates' | '/matches'
+  fullPaths:
+    | '/'
+    | '/agenda'
+    | '/configuracoes'
+    | '/conversas'
+    | '/dates'
+    | '/ia'
+    | '/matches'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/agenda' | '/conversas' | '/dates' | '/matches'
-  id: '__root__' | '/' | '/agenda' | '/conversas' | '/dates' | '/matches'
+  to:
+    | '/'
+    | '/agenda'
+    | '/configuracoes'
+    | '/conversas'
+    | '/dates'
+    | '/ia'
+    | '/matches'
+  id:
+    | '__root__'
+    | '/'
+    | '/agenda'
+    | '/configuracoes'
+    | '/conversas'
+    | '/dates'
+    | '/ia'
+    | '/matches'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AgendaRoute: typeof AgendaRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
   ConversasRoute: typeof ConversasRoute
   DatesRoute: typeof DatesRoute
+  IaRoute: typeof IaRoute
   MatchesRoute: typeof MatchesRoute
 }
 
@@ -95,6 +137,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AgendaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/conversas': {
       id: '/conversas'
       path: '/conversas'
@@ -107,6 +156,13 @@ declare module '@tanstack/react-router' {
       path: '/dates'
       fullPath: '/dates'
       preLoaderRoute: typeof DatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ia': {
+      id: '/ia'
+      path: '/ia'
+      fullPath: '/ia'
+      preLoaderRoute: typeof IaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/matches': {
@@ -122,8 +178,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AgendaRoute: AgendaRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
   ConversasRoute: ConversasRoute,
   DatesRoute: DatesRoute,
+  IaRoute: IaRoute,
   MatchesRoute: MatchesRoute,
 }
 export const routeTree = rootRouteImport
