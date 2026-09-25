@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgendaRouteImport } from './routes/agenda'
 import { Route as ConversasRouteImport } from './routes/conversas'
+import { Route as DatesRouteImport } from './routes/dates'
 import { Route as MatchesRouteImport } from './routes/matches'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +20,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConversasRoute = ConversasRouteImport.update({
   id: '/conversas',
   path: '/conversas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatesRoute = DatesRouteImport.update({
+  id: '/dates',
+  path: '/dates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MatchesRoute = MatchesRouteImport.update({
@@ -31,31 +43,39 @@ const MatchesRoute = MatchesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
   '/conversas': typeof ConversasRoute
+  '/dates': typeof DatesRoute
   '/matches': typeof MatchesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
   '/conversas': typeof ConversasRoute
+  '/dates': typeof DatesRoute
   '/matches': typeof MatchesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
   '/conversas': typeof ConversasRoute
+  '/dates': typeof DatesRoute
   '/matches': typeof MatchesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/conversas' | '/matches'
+  fullPaths: '/' | '/agenda' | '/conversas' | '/dates' | '/matches'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conversas' | '/matches'
-  id: '__root__' | '/' | '/conversas' | '/matches'
+  to: '/' | '/agenda' | '/conversas' | '/dates' | '/matches'
+  id: '__root__' | '/' | '/agenda' | '/conversas' | '/dates' | '/matches'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgendaRoute: typeof AgendaRoute
   ConversasRoute: typeof ConversasRoute
+  DatesRoute: typeof DatesRoute
   MatchesRoute: typeof MatchesRoute
 }
 
@@ -68,11 +88,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/conversas': {
       id: '/conversas'
       path: '/conversas'
       fullPath: '/conversas'
       preLoaderRoute: typeof ConversasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dates': {
+      id: '/dates'
+      path: '/dates'
+      fullPath: '/dates'
+      preLoaderRoute: typeof DatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/matches': {
@@ -87,7 +121,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgendaRoute: AgendaRoute,
   ConversasRoute: ConversasRoute,
+  DatesRoute: DatesRoute,
   MatchesRoute: MatchesRoute,
 }
 export const routeTree = rootRouteImport
