@@ -17,7 +17,7 @@ export const Route = createFileRoute("/dates")({
 
 function DatesPage() {
   const possiveis = matches.filter((m) => m.analise.possivelDate);
-  const [pessoa, setPessoa] = useState(possiveis[0]?.nome ?? matches[0].nome);
+  const [pessoa, setPessoa] = useState(possiveis[0]?.nome ?? matches[0]!.nome);
   const [salvo, setSalvo] = useState(false);
 
   return (

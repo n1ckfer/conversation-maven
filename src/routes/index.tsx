@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
 
 function Dashboard() {
   const destaque = matches.filter((m) => m.status === "POSSIBLE_DATE" || m.status === "DATE_SCHEDULED");
-  const sugestao = matches[0];
+  const sugestao = matches[0]!;
 
   return (
     <AppShell>

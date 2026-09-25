@@ -7,9 +7,8 @@ import { detectaDate, estilosIA, matches, type Message } from "@/lib/mock-data";
 type Search = { id?: string };
 
 export const Route = createFileRoute("/conversas")({
-  validateSearch: (search: Record<string, unknown>): Search => ({
-    id: typeof search.id === "string" ? search.id : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): Search =>
+    typeof search['id'] === "string" ? { id: search['id'] } : {},
   head: () => ({
     meta: [
       { title: "Conversas — Amora" },
@@ -23,7 +22,7 @@ export const Route = createFileRoute("/conversas")({
 
 function ConversasPage() {
   const { id } = Route.useSearch();
-  const ativo = matches.find((m) => m.id === id) ?? matches[0];
+  const ativo = matches.find((m) => m.id === id) ?? matches[0]!;
 
   const [mensagens, setMensagens] = useState<Message[]>(ativo.mensagens);
   const [rascunho, setRascunho] = useState("");
